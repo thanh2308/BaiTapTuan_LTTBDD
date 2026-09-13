@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, ScrollView, Text, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Header } from './components/Header';
-import { BookRowCard } from './components/BookRowCard';
 import { CategoryChips } from './components/CategoryChips';
 import { BookGrid } from './components/BookGrid';
 import { FloatingCartButton } from './components/FloatingCartButton';
@@ -16,11 +15,6 @@ export default function App() {
       <Header />
 
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.sectionTitle}>Gợi ý hôm nay</Text>
-        {BOOKS.slice(0, 3).map((book) => (
-          <BookRowCard key={book.id} book={book} />
-        ))}
-
         <Text style={styles.sectionTitle}>Danh mục</Text>
         <CategoryChips />
 
