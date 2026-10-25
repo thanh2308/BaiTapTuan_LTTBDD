@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { SelectPhoneApp } from './src/ex1/SelectPhoneApp';
-import { SelectPhoneApi } from './src/ex1/SelectPhoneApi';
+import { SelectPhoneApi } from './src/ex2/SelectPhoneApi';
 import { BottomTabApp } from './src/ex3/BottomTabApp';
 import { StackTabApp } from './src/ex4/StackTabApp';
 import { DrawerApp } from './src/ex5/DrawerApp';

@@ -22,6 +22,8 @@ Quét QR bằng Expo Go tương thích SDK 54; hoặc `npm run android` với An
 - **Bài 4:** Stack Home chứa Products/Favorites; truyền `{ id }` đến ProductDetails; lưu/bỏ yêu thích bằng Context. Không lưu qua lần đóng app vì đề không yêu cầu.
 - **Bài 5:** Drawer Trang chủ/Cá nhân/Cài đặt; hai Switch, mặc định thông báo bật và giao diện tối tắt; dòng trạng thái đổi ngay. Không làm Context đổi nền toàn app vì đó là phần nâng cao tùy chọn trong Word.
 
+Bài 2 nằm tại `src/ex2/SelectPhoneApi.tsx`, gọi API qua `src/api/phoneApi.ts` và dùng lại giao diện `src/ex1/SelectPhoneApp.tsx`.
+
 Một NavigationContainer ở App quản lý bài đang chọn; mỗi bài dùng navigator riêng, không lồng các container độc lập. `popTo('Product', { color })` là cách trả kết quả cho React Navigation 7.
 
 ## Cấu hình API thật cho Bài 2
