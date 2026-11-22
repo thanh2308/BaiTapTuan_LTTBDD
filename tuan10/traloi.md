@@ -1,0 +1,12 @@
+Câu 1: Vì sao khi đổi numColumns của FlatList phải đổi cả key? Bỏ key thì chuyện gì xảy ra?
+FlatList cố định cách xếp hàng theo số cột ngay từ lúc khởi tạo nên không cho thay đổi trực tiếp khi đang chạy. Đổi key giúp React hủy FlatList cũ và dựng lại FlatList mới với numColumns mới. Nếu bỏ key, khi bật Switch sẽ báo lỗi "Changing numColumns on the fly is not supported".
+Câu 2: Dữ liệu nào nên để trong useState của màn hình, dữ liệu nào nên đưa vào Redux? Lấy ví dụ từ BookStore.
+Dữ liệu chỉ dùng nội bộ trong một màn hình và không cần giữ khi rời màn (như keyword, isTile, category) nên để trong useState. Dữ liệu dùng chung giữa nhiều màn hình để đọc và ghi (như giỏ hàng cho Chi tiết, Giỏ hàng, badge; danh sách yêu thích cho Chi tiết và tab Yêu thích) nên đưa vào Redux.
+Câu 3: Trong createSlice được viết state.items.push(…) và found.quantity += 1. Vì sao viết như vậy được, trong khi ở component bình thường không được sửa trực tiếp state?
+Redux Toolkit tích hợp sẵn Immer. Immer truyền vào reducer một bản nháp (draft) của state; mọi thao tác sửa trực tiếp trên bản nháp sẽ được ghi nhận để tạo ra một bản state mới bất biến mà không làm thay đổi state cũ. Ở component bình thường không có Immer nên sửa trực tiếp state sẽ làm React không nhận ra thay đổi để render lại.
+Câu 4: selectIsFavorite(id) trả về một hàm. Vì sao viết như vậy? Danh sách yêu thích chỉ lưu id mà không lưu cả đối tượng sách thì có lợi gì?
+selectIsFavorite(id) nhận id và trả về một hàm nhận RootState, vừa khớp chữ ký mà useAppSelector yêu cầu vừa giữ được tham số id. Chỉ lưu id giúp tránh trùng lặp và lệch dữ liệu: thông tin sách (tên, giá, rating) luôn lấy từ nguồn gốc duy nhất nên khi sách thay đổi thì danh sách yêu thích tự cập nhật đúng theo.
+Câu 5: BookCard dùng React.memo, còn onSelect ở Home được bọc bằng useCallback. Nếu bỏ useCallback thì React.memo còn tác dụng không? Giải thích.
+Không còn tác dụng. Nếu bỏ useCallback, mỗi lần HomeScreen render lại thì onSelect sẽ bị tạo thành một tham chiếu hàm mới. Khi đó props của BookCard bị coi là đã thay đổi nên React.memo vẫn render lại toàn bộ các thẻ.
+Câu 6 (Bonus): Một createAsyncThunk có ba hành động pending, fulfilled, rejected. Mỗi hành động làm thay đổi những trường nào của state trong booksSlice?
+pending đặt status = "loading" và error = null; fulfilled đặt status = "succeeded" và gán items = action.payload (dữ liệu nhận được); rejected đặt status = "failed" và gán error = action.payload từ rejectWithValue (hoặc thông báo lỗi mặc định).
